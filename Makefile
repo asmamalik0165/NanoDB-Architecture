@@ -1,12 +1,15 @@
 CXX = g++
 CXXFLAGS = -std=c++17 -Wall -Wextra -g -Iinclude
 
+SOURCES = src/main.cpp src/DataValue.cpp src/BufferPool.cpp
+OBJECTS = $(SOURCES:.cpp=.o)
+
 all: bin/nanodb
 
-bin/nanodb: src/main.cpp
+bin/nanodb: $(SOURCES)
 	@mkdir -p bin logs
-	$(CXX) $(CXXFLAGS) -o bin/nanodb src/main.cpp
-	@echo "Build complete!"
+	$(CXX) $(CXXFLAGS) -o bin/nanodb $(SOURCES)
+	@echo "Build complete: bin/nanodb"
 
 run: bin/nanodb
 	./bin/nanodb
