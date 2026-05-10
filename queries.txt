@@ -1,0 +1,59 @@
+-- Simple SELECT queries (1-10)
+SELECT * FROM customer WHERE c_custkey == 1
+SELECT * FROM customer WHERE c_acctbal > 5000
+SELECT * FROM customer WHERE c_mktsegment == BUILDING
+SELECT * FROM customer WHERE c_nationkey == 15
+SELECT * FROM orders WHERE o_orderkey == 100
+SELECT * FROM orders WHERE o_orderstatus == O
+SELECT * FROM orders WHERE o_totalprice > 100000
+SELECT * FROM lineitem WHERE l_quantity > 30
+SELECT * FROM lineitem WHERE l_discount > 0.05
+SELECT * FROM customer WHERE c_custkey > 10000
+
+-- Complex WHERE clauses (11-20)
+SELECT * FROM customer WHERE c_acctbal > 5000 AND c_mktsegment == BUILDING
+SELECT * FROM customer WHERE (c_acctbal > 5000 AND c_mktsegment == BUILDING) OR c_nationkey == 15
+SELECT * FROM orders WHERE o_totalprice > 50000 AND o_orderstatus == O
+SELECT * FROM orders WHERE (o_totalprice > 100000 AND o_orderstatus == F) OR o_custkey < 1000
+SELECT * FROM lineitem WHERE l_quantity > 20 AND l_discount < 0.05
+SELECT * FROM customer WHERE c_acctbal > 3000 AND c_acctbal < 7000
+SELECT * FROM orders WHERE o_orderkey > 5000 AND o_orderkey < 15000
+SELECT * FROM lineitem WHERE l_extendedprice > 10000 AND l_tax < 0.05
+SELECT * FROM customer WHERE c_custkey > 5000 OR c_nationkey == 10
+SELECT * FROM orders WHERE o_custkey > 10000 AND o_totalprice < 50000
+
+-- Deep nested expressions (21-30)
+SELECT * FROM orders WHERE ((o_totalprice * 1.5) > 100000 AND (o_custkey % 2 == 0)) OR (o_orderstatus != O)
+SELECT * FROM customer WHERE ((c_acctbal > 5000 AND c_nationkey < 10) OR (c_mktsegment == BUILDING)) AND c_custkey > 1000
+SELECT * FROM lineitem WHERE ((l_quantity > 20 AND l_discount < 0.05) OR l_tax > 0.06) AND l_returnflag == N
+SELECT * FROM orders WHERE (o_totalprice > 50000 OR o_custkey < 5000) AND (o_orderstatus == O OR o_orderstatus == F)
+SELECT * FROM customer WHERE (c_acctbal > 4000 AND c_acctbal < 8000) OR (c_nationkey > 15 AND c_mktsegment == AUTOMOBILE)
+SELECT * FROM lineitem WHERE (l_quantity < 10 OR l_quantity > 40) AND l_extendedprice > 50000
+SELECT * FROM orders WHERE ((o_orderkey % 10) == 0) AND o_totalprice > 75000
+SELECT * FROM customer WHERE (c_custkey > 15000) AND ((c_acctbal > 6000) OR (c_nationkey == 20))
+SELECT * FROM lineitem WHERE ((l_discount > 0.03 AND l_discount < 0.07) OR l_tax == 0.05) AND l_linestatus == O
+SELECT * FROM orders WHERE (o_custkey < 8000 OR o_custkey > 12000) AND o_totalprice > 60000
+
+-- JOIN queries (31-40)
+SELECT * FROM customer JOIN orders
+SELECT * FROM customer JOIN orders JOIN lineitem
+SELECT * FROM orders JOIN lineitem
+SELECT * FROM customer JOIN orders WHERE c_acctbal > 5000
+SELECT * FROM customer JOIN orders WHERE o_totalprice > 100000
+SELECT * FROM customer JOIN orders JOIN lineitem WHERE c_nationkey == 15
+SELECT * FROM orders JOIN lineitem WHERE l_quantity > 25
+SELECT * FROM customer JOIN orders WHERE c_mktsegment == BUILDING AND o_orderstatus == O
+SELECT * FROM customer JOIN orders JOIN lineitem WHERE o_totalprice > 50000 AND l_discount > 0.05
+SELECT * FROM customer JOIN orders WHERE (c_acctbal > 7000) AND (o_custkey > 5000)
+
+-- Range queries (41-50)
+SELECT * FROM customer WHERE c_custkey > 5000 AND c_custkey < 10000
+SELECT * FROM orders WHERE o_orderkey > 10000 AND o_orderkey < 20000
+SELECT * FROM lineitem WHERE l_extendedprice > 20000 AND l_extendedprice < 80000
+SELECT * FROM customer WHERE c_acctbal > 2000 AND c_acctbal < 9000
+SELECT * FROM orders WHERE o_totalprice > 30000 AND o_totalprice < 150000
+SELECT * FROM lineitem WHERE l_quantity > 15 AND l_quantity < 35
+SELECT * FROM customer WHERE c_nationkey > 5 AND c_nationkey < 20
+SELECT * FROM orders WHERE o_custkey > 8000 AND o_custkey < 16000
+SELECT * FROM lineitem WHERE l_discount > 0.02 AND l_discount < 0.08
+SELECT * FROM customer WHERE c_custkey > 1000 AND c_acctbal > 4000
