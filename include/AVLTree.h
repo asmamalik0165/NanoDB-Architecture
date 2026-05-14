@@ -2,7 +2,6 @@
 #define AVL_TREE_H
 
 #include <iostream>
-#include <algorithm>
 
 template<typename K, typename V>
 struct AVLNode {
@@ -30,7 +29,9 @@ private:
     // Update height of node
     void updateHeight(AVLNode<K,V>* node) {
         if (node) {
-            node->height = 1 + std::max(getHeight(node->left), getHeight(node->right));
+            int lh = getHeight(node->left);
+            int rh = getHeight(node->right);
+            node->height = 1 + (lh > rh ? lh : rh);
         }
     }
     

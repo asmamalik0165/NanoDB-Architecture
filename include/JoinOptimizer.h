@@ -3,7 +3,6 @@
 
 #include <string>
 #include <iostream>
-#include <algorithm>
 
 // Edge in the join graph (represents a join operation)
 struct JoinEdge {

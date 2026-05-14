@@ -48,9 +48,20 @@ build-*/
 CMakeFiles/
 CMakeCache.txt
 cmake_install.cmake
-Makefile
 install_manifest.txt
 compile_commands.json
+
+# NanoDB: compiled binaries (already covered by *.exe above)
+bin/
+
+# NanoDB: TPC-H raw datasets (do not push per project requirements)
+data/
+
+# NanoDB: runtime logs
+logs/
+
+# NanoDB: misc files
+*.docx
 
 # Temporary files
 *.tmp
